@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Chrome sticky position in dynamic height container issue</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        main {
+            background: thistle;
+            height: 100svh;
+        }
+
+        .content {
+            height: calc(100svh - 100px);
+            padding: 10px;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .sticky {
+            position: sticky;
+            bottom: 0;
+            height: 100px;
+            padding: 10px;
+            background: hotpink;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <div class=content>
+        <h1>Chrome issue: <br/> sticky pos + dynamic height</h1>
+
+
+        Given a sticky positioned element in a container with initial height of 100svh.
+
+        <ol>
+            <li>Increase the height of the container dynamically by mutating its content.</li>
+            <li>Scroll down so that browser chrome is hidden</li>
+        </ol>
+
+        <h2>Expected result</h2>
+        Sticky element is positioned relative to the large viewport rectangle
+        <h2>Actual result</h2>
+        Sticky element is positioned against the small viewport rectangle, leaving a visible gab below.
+
+    </div>
+    <div class=sticky>
+
+    </div>
+</main>
+
+<script id="rendered-js" >
+    document.querySelector('.content').style.height = '100svh'
+</script>
+</body>
+</html>
