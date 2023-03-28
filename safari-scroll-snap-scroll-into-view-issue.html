@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Safari scroll-snap + scrollIntoView bug</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html {
+            scroll-snap-type: y mandatory;
+        }
+
+        section {
+            scroll-snap-align: start;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        section:nth-child {
+            background: #111;
+        }
+    </style>
+</head>
+
+<body>
+<article>
+    <section>
+        <h1>1</h1>
+        <button value="next">Next</button>
+    </section>
+    <section>
+        <h1>2</h1>
+        <button value="previous">Previous</button>
+    </section>
+</article>
+<script>
+    document.addEventListener("click", (e) => {
+        const sections = document.querySelectorAll("section")
+
+        if (e.target.value === "next") {
+            sections[1].scrollIntoView({ behavior: "smooth" });
+        } else if (e.target.value === "previous") {
+            sections[0].scrollIntoView({ behavior: "smooth" });
+        }
+    });
+</script>
+</body>
+</html>
