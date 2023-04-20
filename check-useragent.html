@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Check useragent</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<script>
+    const userAgent = navigator.userAgent || navigator.vendor || window['opera']
+    const p = document.createElement('p')
+    p.innerText = userAgent
+    document.body.appendChild(p)
+</script>
+</body>
+</html>
