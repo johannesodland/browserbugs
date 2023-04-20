@@ -9,8 +9,24 @@
 
 <script>
     const userAgent = navigator.userAgent || navigator.vendor || window['opera']
+
+    let regexp
+    if (/android/.test(userAgent.toLowerCase())) {
+        regexp = /fban|fbav|instagram|snapchat|nrk|firefox|opera|klar\//
+    } else if (!!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform)) {
+        regexp = /fban|fbav|instagram|snapchat|nrk|firefox|opera|chrome|fxios|crios/
+    }
+
+    const issue = regexp.test(userAgent.toLowerCase())
+
+
     const p = document.createElement('p')
-    p.innerText = userAgent
+    p.innerHTML = `
+        <dl>
+            <dt>userAgent:</dt><dd> ${userAgent}</dd>
+            <dt>platform:</dt><dd> ${navigator.platform}</dd>
+            <dt>issue:</dt><dd> ${issue}</dd>
+        </dl>`
     document.body.appendChild(p)
 </script>
 </body>
