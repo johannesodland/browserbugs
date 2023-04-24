@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <title>Safari box-decoration-break: clone is dropping end-side padding</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        p {
+            max-width: 420px;
+            margin-inline: auto;
+
+            font: 1.5rem / 1.7 sans-serif;
+        }
+
+        p span {
+            padding: 5px 20px;
+            border-radius: 5px;
+
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+
+            color: aliceblue;
+            background: darkslategray;
+        }
+    </style>
+</head>
+<body>
+<p>
+    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In blandit neque at dui posuere, at aliquet urna scelerisque. Fusce cursus eget massa eu efficitur.</span>
+</p>
+</body>
+</html>
