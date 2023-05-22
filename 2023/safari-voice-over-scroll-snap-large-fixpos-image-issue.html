@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Safari Issue with VoiceOver + Scroll Snap + Large Fixpos Image</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html {
+            scroll-snap-type: y mandatory;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        a {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+        }
+
+        img {
+            position: fixed;
+            display: block;
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        section {
+            position: relative;
+            scroll-snap-align: start;
+            height: 100lvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: #fff;
+        }
+
+        section::after {
+            content: '';
+            position: absolute;
+            bottom: calc(100lvh - 100dvh);
+            left: 0;
+            right: 0;
+            margin-inline: auto;
+            display: block;
+            width: 80%;
+            height: 2px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+<a href="https://nytimes.com">A link</a>
+<img src="https://dummyimage.com/810x1080/000/444" alt="Image description 1"/>
+<section>
+    <h2>Section 1</h2>
+</section>
+<img src="https://dummyimage.com/810x1080/000/444" alt="Image description 2"/>
+<section>
+    <h2>Section 2</h2>
+</section>
+<section>
+    <h2>Section 3</h2>
+</section>
+<section>
+    <h2>Section 4</h2>
+</section>
+</body>
+</html>
