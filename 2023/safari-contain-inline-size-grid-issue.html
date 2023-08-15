@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Safari iOS 17 contain inline-size grid issue</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            --extra-padding: max(0px,100lvh - 100dvh);
+        }
+
+        section {
+            box-sizing: border-box;
+            display: grid;
+            min-height: 100svh;
+            grid-template-rows: auto;
+            padding: 30px;
+            contain: inline-size;
+        }
+
+        div {
+            align-self: end;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <div>
+        Lorem ipsum
+    </div>
+</section>
+</body>
+</html>
