@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Safari float left clear right issue</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        section {
+            max-width: 600px;
+        }
+
+        .box {
+            height: 100px;
+            background: thistle;
+            border: 5px solid darkslategray;
+        }
+
+        .float-left {
+            width: 100%;
+            float: left;
+        }
+
+        .clear-right {
+            clear: right;
+        }
+
+        .test-color {
+            background: linear-gradient(red 200px, green 200px) fixed;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <div class="float-left">
+        <div class="box float-left"></div>
+        <div class="box float-left"></div>
+        <div class="box float-left"></div>
+        <div class="box float-left clear-right test-color"></div>
+    </div>
+</section>
+</body>
+</html>
