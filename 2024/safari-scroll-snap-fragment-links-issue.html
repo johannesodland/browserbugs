@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <title>Scroll snap fragment links issue</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html {
+            font-family: sans-serif;
+            scroll-snap-type: y mandatory;
+        }
+
+        section {
+            height: 100vh;
+            align-content: center;
+            text-align: center;
+            scroll-snap-align: start;
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <h1>Test fragment links</h1>
+    <p>Clicking the following links should take you to the corresponding section.</p>
+    <a href="#section-1">Section 1</a>
+    <a href="#section-2">Section 2</a>
+    <a href="#section-3">Section 3</a>
+    <a href="#section-4">Section 4</a>
+</section>
+<section id=section-1>
+    <h2>1</h2>
+</section>
+<section id=section-2>
+    <h2>2</h2>
+</section>
+<section id=section-3>
+    <h2>3</h2>
+</section>
+<section id=section-4>
+    <h2>4</h2>
+</section>
+</body>
+</html>
