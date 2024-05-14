@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <title>Safari text-wrap: balance issue</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        p {
+            margin-inline: auto;
+            max-width: 500px;
+            text-wrap: balance;
+        }
+
+        span {
+            background: lightblue;
+            padding: 5px;
+            line-height: 2;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+        }
+    </style>
+</head>
+<body>
+<p>
+    <span>`text-wrap: balance` fails in Safari 17.5. when the selected element has a child with `-webkit-box-decoration-break: clone;` </span>
+</p>
+</body>
+</html>
