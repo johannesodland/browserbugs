@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Safari 18 float-left issue</title>
+    <style>
+        article {
+            max-width: 400px;
+            margin-inline: auto;
+        }
+
+        p {
+            width: 100%;
+            float: left;
+            box-sizing: border-box;
+            margin: 0 0 1em 0;
+        }
+
+        .trigger {
+            box-sizing: border-box;
+            aspect-ratio: 1/1;
+            border: 1px solid blue;
+            float: left;
+            clear: left;
+            width: 110px;
+            margin-bottom: 60px;
+            margin-left: -120px;
+        }
+    </style>
+</head>
+<body>
+<article>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam gravida et risus ac eleifend. Integer condimentum volutpat pretium. Fusce eu tincidunt lectus. Sed libero felis, hendrerit non massa id, rutrum tincidunt metus. Sed sit amet ultrices est. Donec vehicula faucibus sodales. Sed non mattis ligula. Sed nec erat vel sem euismod condimentum id sed diam. Vestibulum sollicitudin tincidunt accumsan.</p>
+    <div class=trigger>Trigger</div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam gravida et risus ac eleifend. Integer condimentum volutpat pretium. Fusce eu tincidunt lectus. Sed libero felis, hendrerit non massa id, rutrum tincidunt metus. Sed sit amet ultrices est. Donec vehicula faucibus sodales. Sed non mattis ligula. Sed nec erat vel sem euismod condimentum id sed diam. Vestibulum sollicitudin tincidunt accumsan.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam gravida et risus ac eleifend. Integer condimentum volutpat pretium. Fusce eu tincidunt lectus. Sed libero felis, hendrerit non massa id, rutrum tincidunt metus. Sed sit amet ultrices est. Donec vehicula faucibus sodales. Sed non mattis ligula. Sed nec erat vel sem euismod condimentum id sed diam. Vestibulum sollicitudin tincidunt accumsan.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam gravida et risus ac eleifend. Integer condimentum volutpat pretium. Fusce eu tincidunt lectus. Sed libero felis, hendrerit non massa id, rutrum tincidunt metus. Sed sit amet ultrices est. Donec vehicula faucibus sodales. Sed non mattis ligula. Sed nec erat vel sem euismod condimentum id sed diam. Vestibulum sollicitudin tincidunt accumsan.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam gravida et risus ac eleifend. Integer condimentum volutpat pretium. Fusce eu tincidunt lectus. Sed libero felis, hendrerit non massa id, rutrum tincidunt metus. Sed sit amet ultrices est. Donec vehicula faucibus sodales. Sed non mattis ligula. Sed nec erat vel sem euismod condimentum id sed diam. Vestibulum sollicitudin tincidunt accumsan.</p>
+</article>
+</body>
+</html>
