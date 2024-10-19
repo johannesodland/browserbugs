@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chrome animation pause/play currentTime issue</title>
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+
+        .container {
+            width: 600px;
+            margin-inline: auto;
+        }
+
+        .animated {
+            width: 4px;
+            height: 40px;
+            margin-inline: -2px;
+            background: blue;
+        }
+
+        .x-axis {
+            position: relative;
+            height: 20px;
+        }
+
+        .tick {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            width: 0px;
+
+
+            &::before {
+                content: '';
+                display: block;
+                background: black;
+                width: 1px;
+                height: 10px;
+            }
+        }
+
+        .tick-0 {
+            left: 0;
+        }
+
+        .tick-15 {
+            left: 25%;
+        }
+
+        .tick-30 {
+            left: 50%;
+        }
+
+        .tick-45 {
+            left: 75%;
+        }
+
+        .tick-60 {
+            left: 100%;
+        }
+
+        output {
+            display: block;
+            margin-block: 10px;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+<div class=container>
+    <div class=x-axis>
+        <div class="tick tick-0">
+            <div>0</div>
+        </div>
+        <div class="tick tick-15">
+            <div>15</div>
+        </div>
+        <div class="tick tick-30">
+            <div>30</div>
+        </div>
+        <div class="tick tick-45">
+            <div>45</div>
+        </div>
+        <div class="tick tick-60">
+            <div>60</div>
+        </div>
+    </div>
+    <div class=animated></div>
+    <div class=animated></div>
+    <output></output>
+    <button>Reset currentTime</button>
+</div>
+
+<script id="rendered-js">
+    const output = document.querySelector("output");
+    const formatter = new Intl.NumberFormat("en-US");
+    const [animated1, animated2] = document.querySelectorAll(".animated");
+    const button = document.querySelector("button")
+
+    function formatTime(ms) {
+        return formatter.format(ms);
+    }
+
+    function updateCurrentTime(animation) {
+        const now = new Date();
+        const seconds = now.getSeconds();
+        const ms = now.getMilliseconds();
+        animation.currentTime = seconds * 1000 + ms;
+        output.value =
+            `Time: ${formatTime(seconds * 1000 + ms)}
+             animation.currentTime: ${formatTime(animation.currentTime)}
+             effect.localTime:${formatTime(animation.effect.getComputedTiming().localTime)}`;
+    }
+
+    const keyframes = {translate: ["0px 0px", "600px 0px"]};
+    const animation1 = animated1.animate(keyframes, {duration: 60_000, iterations: Infinity});
+    const animation2 = animated2.animate(keyframes, {duration: 60_000, iterations: Infinity});
+    updateCurrentTime(animation1);
+    updateCurrentTime(animation2);
+
+    button.addEventListener("click", () => {
+        animation2.pause();
+        updateCurrentTime(animation2);
+        animation2.play();
+    });
+</script>
+</body>
+</html>
