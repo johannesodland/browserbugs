@@ -5,12 +5,12 @@
     <title>Line-breaking with box-decoration-break: clone</title>
 </head>
 <body>
-<div>
+<div class="test">
     <p>
         <span>0000 0000 0000</span>
     </p>
     <style>
-        @scope {
+        .test {
             p {
                 width: 10ch;
                 border: 1px solid black;
@@ -19,6 +19,7 @@
             span {
                 background: thistle;
                 padding-inline: 1ch;
+                -webkit-box-decoration-break: clone;
                 box-decoration-break: clone;
             }
         }
