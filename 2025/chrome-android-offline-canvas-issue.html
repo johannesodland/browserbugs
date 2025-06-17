@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <title>Chrome Android OfflineCanvas issue</title>
+    <style>
+        canvas {
+            outline: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="400" height="400"></canvas>
+<p>Canvas should turn green</p>
+<script type="text/javascript">
+    let canvas;
+
+    function clamp(value, min, max) {
+        return Math.max(Math.min(value, max), min);
+    }
+
+    onmessage = (e) => {
+        if (e.data.canvas) {
+            canvas = e.data.canvas;
+        } else if (e.data.value) {
+            const context = canvas.getContext("2d", {willReadFrequently: true});
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < imageData.data.length; i += 4) {
+                const color = [0, 255, 0, 255];
+                const value = clamp(e.data.value, 0, 1);
+
+                imageData.data[i] = Math.round(value * color[0]);
+                imageData.data[i + 1] = Math.round(value * color[1]);
+                imageData.data[i + 2] = Math.round(value * color[2]);
+                imageData.data[i + 3] = color[3];
+            }
+            context.putImageData(imageData, 0, 0);
+        }
+    };
+</script>
+
+<script id="rendered-js">
+    const workerBlob = new Blob([document.querySelector(`script[type="text/javascript-worker"]`)
+        .textContent], {type: "text/javascript"});
+    const workerUrl = URL.createObjectURL(workerBlob);
+    const worker = new Worker(workerUrl);
+
+    const offscreen = this.canvas.transferControlToOffscreen();
+    worker.postMessage({canvas: offscreen}, [offscreen]);
+    worker.postMessage({value: 1});
+</script>
+</body>
+</html>
