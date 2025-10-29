@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>Safari 26 – overconstrained sticky element shifts on scroll</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .sticky {
+            position: sticky;
+            top: 0;
+            bottom: 0;
+            height: 100lvh;
+            outline-offset: -10px;
+            z-index: -1;
+
+            &:nth-child(1 of .sticky) {
+                outline: 10px dashed red;
+            }
+
+            &:nth-child(2 of .sticky) {
+                outline: 10px dashed rebeccapurple;
+            }
+        }
+
+        .card {
+            height: 100lvh;
+            outline: 10px dotted hotpink;
+            outline-offset: -20px;
+        }
+
+        .sticky + .card {
+            margin-top: -100lvh;
+        }
+    </style>
+</head>
+<body>
+<div class="sticky">
+</div>
+<div class="card">
+</div>
+<div class="sticky">
+</div>
+<div class="card">
+</div>
+<div class="card">
+</div>
+</body></html>
